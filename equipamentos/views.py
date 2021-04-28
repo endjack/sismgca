@@ -20,9 +20,8 @@ class IndexListView(ListView):
         context['objectConsoles'] = Consoles.objects.order_by('pk').all()
         context['objectRadios'] = Radios.objects.order_by('pk').all()
         context['objectCentralAudio'] = CentralAudio.objects.order_by('pk').all()
-        context['objectCentralAudio'] = CentralAudio.objects.order_by('pk').all()
         context['objectDiversos'] = Diversos.objects.order_by('pk').all()
-        context['objectEms'] = CentralAudio.objects.order_by('pk').all()
+        context['objectEms'] = Ems.objects.order_by('pk').all()
         context['objectTelefonia'] = Telefonia.objects.order_by('pk').all()
         return context
 

@@ -25,18 +25,27 @@
                 <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/">Equipamentos</a>
                 </li>
-                <li class="nav-item dropdown">
-                <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Incluir
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <li><a class="dropdown-item" href="#">Equipamento</a></li>
-
-                </ul>
+                <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="admin/">Admin</a>
                 </li>
             </ul>
             </div>
+            <span style="margin-right:15px">Legendas:</span>
+            <ul class="nav justify-content-end">
+               <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                <button type="button" class="btn btn-success">Operacional</button>
+                <button type="button" class="btn btn-warning">Degradado</button>
+                <button type="button" class="btn btn-danger">Em pane</button>
+                <button type="button" class="btn btn-secondary">Indisponível</button>
+                
+                </div>
+            </ul>
+
+
+
         </div>
+
+
     </nav>
 
     {% block conteudo %} {%endblock%}

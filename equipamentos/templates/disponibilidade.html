@@ -7,9 +7,9 @@
     .btn-circle.btn-xl {
         width: 70px;
         height: 70px;
-        padding: 10px 16px;
+        padding: 2px 2px;
         border-radius: 35px;
-        font-size: 16px;
+        font-size: 90%;
         line-height: 1.33;
       }
   </style>
@@ -19,8 +19,9 @@
 
 {% block conteudo %}
 <div class="container-xl" style="margin-left:10px; margin-right:10px">
+  <div class="col-10">
   <div class="row">
-    <div class="col">
+    <div class="col-4">
     <h2>Par2000T </h2> 
     {% for obj in objectPar2000T %}
     <button type="button" onclick="abrir_modal('{% url 'mudar_par2000t' obj.pk %}')" 
@@ -157,7 +158,17 @@
     {% endfor %}
     </div>
   </div>
+
 </div>
+<div class="col-2" style="border=2px"> Teste
+
+</div>
+
+</div>
+
+
+
+
 <div class="modal fade" id="editar" role="dialog"></div>
 {% endblock %}
 
