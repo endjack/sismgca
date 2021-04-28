@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+
+{% block titulo%}Equipamentos{%endblock%}   
+
+{% block style_head %} 
+<style type="text/css">
+    .btn-circle.btn-xl {
+        width: 70px;
+        height: 70px;
+        padding: 10px 16px;
+        border-radius: 35px;
+        font-size: 16px;
+        line-height: 1.33;
+      }
+  </style>
+{%endblock%}
+
+{% block navbar %}{% endblock %}
+
+{% block conteudo %}
+<div class="container-xl" style="margin-left:10px; margin-right:10px">
+  <div class="row">
+    <div class="col">
+    <h2>Par2000T </h2> 
+    {% for obj in objectPar2000T %}
+    <button type="button" onclick="abrir_modal('{% url 'mudar_par2000t' obj.pk %}')" 
+    class="btn 
+    {% if obj.situacao.situacao_id == 1 %}
+    btn-success
+    {% elif obj.situacao.situacao_id == 2 %}
+    btn-warning
+    {% elif obj.situacao.situacao_id == 3 %}
+    btn-danger
+    {% elif obj.situacao.situacao_id == 4 %}
+    btn-secondary
+    {% else %}
+    btn-default
+    {% endif %} btn-circle btn-xl">{{ obj.nome }}</button>      
+    {% endfor %}
+ 
+    </div>
+    <div class="col">
+    <h2>Consoles</h2> 
+    {% for obj in objectConsoles %}
+    <button type="button" onclick="abrir_modal('{% url 'mudar_consoles' obj.pk %}')" 
+    class="btn 
+    {% if obj.situacao.situacao_id == 1 %}
+    btn-success
+    {% elif obj.situacao.situacao_id == 2 %}
+    btn-warning
+    {% elif obj.situacao.situacao_id == 3 %}
+    btn-danger
+    {% elif obj.situacao.situacao_id == 4 %}
+    btn-secondary
+    {% else %}
+    btn-default
+    {% endif %} btn-circle btn-xl">{{ obj.nome }}</button>
+    {% endfor %}
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-5">
+    <h2>Radios</h2> 
+    {% for obj in objectRadios %}
+    <button type="button" onclick="abrir_modal('{% url 'mudar_radios' obj.pk %}')" 
+    class="btn 
+    {% if obj.situacao.situacao_id == 1 %}
+    btn-success
+    {% elif obj.situacao.situacao_id == 2 %}
+    btn-warning
+    {% elif obj.situacao.situacao_id == 3 %}
+    btn-danger
+    {% elif obj.situacao.situacao_id == 4 %}
+    btn-secondary
+    {% else %}
+    btn-default
+    {% endif %} btn-circle btn-xl">{{ obj.nome }}</button>      
+    {% endfor %}
+
+    </div>
+    <div class="col">
+    <h2>Central Audio</h2> 
+      {% for obj in objectCentralAudio %}
+          <button type="button" onclick="abrir_modal('{% url 'mudar_centralaudio' obj.pk %}')" 
+            class="btn 
+            {% if obj.situacao.situacao_id == 1 %}
+            btn-success
+            {% elif obj.situacao.situacao_id == 2 %}
+            btn-warning
+            {% elif obj.situacao.situacao_id == 3 %}
+            btn-danger
+            {% elif obj.situacao.situacao_id == 4 %}
+            btn-secondary
+            {% else %}
+            btn-default
+            {% endif %} btn-circle btn-xl">{{ obj.nome }}</button>
+      {% endfor %}
+    </div>
+
+    <div class="col">
+    <h2>EMS</h2> 
+      {% for obj in objectEms%}
+          <button type="button" onclick="abrir_modal('{% url 'mudar_ems' obj.pk %}')" 
+            class="btn 
+            {% if obj.situacao.situacao_id == 1 %}
+            btn-success
+            {% elif obj.situacao.situacao_id == 2 %}
+            btn-warning
+            {% elif obj.situacao.situacao_id == 3 %}
+            btn-danger
+            {% elif obj.situacao.situacao_id == 4 %}
+            btn-secondary
+            {% else %}
+            btn-default
+            {% endif %} btn-circle btn-xl">{{ obj.nome }}</button>
+      {% endfor %}
+    </div>
+  </div>
+  <br>
+    <div class="row">
+    <div class="col">
+    <h2>Telefonia</h2> 
+    {% for obj in objectTelefonia %}
+    <button type="button" onclick="abrir_modal('{% url 'mudar_telefonia' obj.pk %}')" 
+    class="btn 
+    {% if obj.situacao.situacao_id == 1 %}
+    btn-success
+    {% elif obj.situacao.situacao_id == 2 %}
+    btn-warning
+    {% elif obj.situacao.situacao_id == 3 %}
+    btn-danger
+    {% elif obj.situacao.situacao_id == 4 %}
+    btn-secondary
+    {% else %}
+    btn-default
+    {% endif %} btn-circle btn-xl">{{ obj.nome }}</button>      
+    {% endfor %}
+ 
+    </div>
+    <div class="col">
+    <h2>Diversos</h2> 
+    {% for obj in objectDiversos %}
+    <button type="button" onclick="abrir_modal('{% url 'mudar_diversos' obj.pk %}')" 
+    class="btn 
+    {% if obj.situacao.situacao_id == 1 %}
+    btn-success
+    {% elif obj.situacao.situacao_id == 2 %}
+    btn-warning
+    {% elif obj.situacao.situacao_id == 3 %}
+    btn-danger
+    {% elif obj.situacao.situacao_id == 4 %}
+    btn-secondary
+    {% else %}
+    btn-default
+    {% endif %} btn-circle btn-xl">{{ obj.nome }}</button>
+    {% endfor %}
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="editar" role="dialog"></div>
+{% endblock %}
+
+
+{% block script_modal %}
+<script type="text/javascript">
+  var $ = jQuery.noConflict();
+  function abrir_modal(url){
+    $('#editar').load(url, function(){
+      $(this).modal('show');
+    });
+  }
+</script>
+{% endblock %}
+
+
