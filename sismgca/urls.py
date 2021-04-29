@@ -15,7 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+
 from equipamentos.views import *
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,5 +30,6 @@ urlpatterns = [
     path('mudar/diversos/<pk>', DiversosUpdate.as_view(), name='mudar_diversos'),
     path('mudar/ems/<pk>', EmsUpdate.as_view(), name='mudar_ems'),
     path('mudar/telefonia/<pk>', TelefoniaUpdate.as_view(), name='mudar_telefonia'),
+    path('view-pdf/', RenderPdf.as_view(), name='view-pdf'),
 
 ]

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="application/pdf">
+        <title> PDF - Relatório </title>
+
+    </head>
+    <body class="" style="background-color: Ivory;">
+    <div class="text-end" style="font-size: 20px;">Relatório de<strong> {% now "d/M/Y H:i" %}</strong></div>
+    <div class=" bg-dark">
+        <div class="container-fluid">
+            <div class="text-center fs-2 text-white" style="font-size: 20px;letter-spacing:4px; line-height:1.5">SISMGCA - Relatório de Equipamentos</div>
+        </div>
+    </div>
+    <br>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Código</th>
+      <th scope="col">Equipamento</th>
+      <th scope="col">Situação</th>
+      <th scope="col">Última Alteração</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  {% for obj in objectPar2000T %}
+    <tr>
+      <th scope="row">{{obj.pk}}{{obj.nome}}</th>
+      <td>Par2000T - {{obj.nome}}</td>
+      <td><button class="btn {{obj.situacao.get_class_bootstrap}}" disabled>{{obj.situacao.label}}</button></td>
+      <td>{{obj.ultimo_registro |date:'d-M-Y H:i:s'}}</td>
+    </tr>
+    {% endfor %}
+    {% for obj in objectConsoles %}
+    <tr>
+      <th scope="row">{{obj.pk}}{{obj.nome}}</th>
+      <td>Consoles - {{obj.nome}}</td>
+      <td><button class="btn {{obj.situacao.get_class_bootstrap}}" disabled>{{obj.situacao.label}}</button></td>
+      <td>{{obj.ultimo_registro |date:'d-M-Y H:i:s'}}</td>
+    </tr>
+    {% endfor %}
+    {% for obj in objectRadios%}
+    <tr>
+      <th scope="row">{{obj.pk}}{{obj.nome}}</th>
+      <td>Radios - {{obj.nome}}</td>
+      <td><button class="btn {{obj.situacao.get_class_bootstrap}}" disabled>{{obj.situacao.label}}</button></td>
+      <td>{{obj.ultimo_registro |date:'d-M-Y H:i:s'}}</td>
+    </tr>
+    {% endfor %}
+    {% for obj in objectCentralAudio%}
+    <tr>
+      <th scope="row">{{obj.pk}}{{obj.nome}}</th>
+      <td>CentralAudio - {{obj.nome}}</td>
+      <td><button class="btn {{obj.situacao.get_class_bootstrap}}" disabled>{{obj.situacao.label}}</button></td>
+      <td>{{obj.ultimo_registro |date:'d-M-Y H:i:s'}}</td>
+    </tr>
+    {% endfor %}
+    {% for obj in objectDiversos%}
+    <tr>
+      <th scope="row">{{obj.pk}}{{obj.nome}}</th>
+      <td>Diversos - {{obj.nome}}</td>
+      <td><button class="btn {{obj.situacao.get_class_bootstrap}}" disabled>{{obj.situacao.label}}</button></td>
+      <td>{{obj.ultimo_registro |date:'d-M-Y H:i:s'}}</td>
+    </tr>
+    {% endfor %}
+    {% for obj in objectEms%}
+    <tr>
+      <th scope="row">{{obj.pk}}{{obj.nome}}</th>
+      <td>Ems - {{obj.nome}}</td>
+      <td><button class="btn {{obj.situacao.get_class_bootstrap}}" disabled>{{obj.situacao.label}}</button></td>
+      <td>{{obj.ultimo_registro |date:'d-M-Y H:i:s'}}</td>
+    </tr>
+    {% endfor %}
+    {% for obj in objectTelefonia%}
+    <tr>
+      <th scope="row">{{obj.pk}}{{obj.nome}}</th>
+      <td>Telefonia - {{obj.nome}}</td>
+      <td><button class="btn {{obj.situacao.get_class_bootstrap}}" disabled>{{obj.situacao.label}}</button></td>
+      <td>{{obj.ultimo_registro |date:'d-M-Y H:i:s'}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+    <div><strong>Total de Equipamentos Registrados:</strong> {{ total_eqps }}</div>
+    </body>
+</html>
+
