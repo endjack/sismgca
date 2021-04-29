@@ -1,0 +1,13 @@
+ <div class="offcanvas offcanvas-end offc" tabindex="-1" id="offcanvasRight-{{obj.nome}}-{{ obj.pk}}" aria-labelledby="offcanvasRightLabel-{{obj.nome}}-{{ obj.pk}}">
+        <div class="offcanvas-header">
+            <h5 id="offcanvasRightLabel-{{obj.nome}}-{{ obj.pk}}">Detalhes - Equipamento {{ obj.nome }}</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
+        </div>
+        <div class="offcanvas-body">
+            Nome do Equipamento: {{obj.nome}} <br>
+            Descrição do Equipamento: <br><br>
+            Situação: <br>
+            <button type="button" class="{{ obj.situacao.get_class_bootstrap }}" disabled>{{obj.situacao.label}}</button>
+            <button type="button" onclick="abrir_modal('{% url 'mudar_par2000t' obj.pk %}')" class="btn btn-outline-dark">Alterar</button>
+         </div>
+</div>

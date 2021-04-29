@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'equipamentos.apps.EquipamentosConfig',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [
@@ -107,13 +108,15 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+#DATETIME_INPUT_FORMATS = ['%d-%m-%Y %H:%M %p',]
+#DATETIME_FORMAT = ['%m/%d/%Y %H:%M:%S']
+#TIME_ZONE = 'UTC'
 
+
+TIME_ZONE = 'America/Cuiaba'
 USE_I18N = True
-
 USE_L10N = True
-
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)

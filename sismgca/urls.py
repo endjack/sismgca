@@ -27,4 +27,5 @@ urlpatterns = [
     path('mudar/diversos/<pk>', DiversosUpdate.as_view(), name='mudar_diversos'),
     path('mudar/ems/<pk>', EmsUpdate.as_view(), name='mudar_ems'),
     path('mudar/telefonia/<pk>', TelefoniaUpdate.as_view(), name='mudar_telefonia'),
+
 ]

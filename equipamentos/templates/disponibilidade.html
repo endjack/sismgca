@@ -1,173 +1,282 @@
 {% extends 'base.html' %}
 
-{% block titulo%}Equipamentos{%endblock%}   
+{% load humanize %}
+
+
+{% block titulo%}Disponibilidade{%endblock%}   
 
 {% block style_head %} 
 <style type="text/css">
     .btn-circle.btn-xl {
-        width: 70px;
-        height: 70px;
+        width: 80px;
+        height: 80px;
         padding: 2px 2px;
-        border-radius: 35px;
-        font-size: 90%;
+        border-radius: 40px;
+        font-size: 100%;
         line-height: 1.33;
       }
+      .grow:hover
+{       -webkit-transform: scale(1.3);
+        -ms-transform: scale(1.3);
+        transform: scale(1.3);
+        -webkit-box-shadow: 5px 10px 18px #888888;
+	      -moz-box-shadow: 5px 10px 18px #888888;
+	      box-shadow: 5px 10px 18px #888888;	
+}
   </style>
 {%endblock%}
 
 {% block navbar %}{% endblock %}
 
 {% block conteudo %}
-<div class="container-xl" style="margin-left:10px; margin-right:10px">
-  <div class="col-10">
+<div class="row">
+<div style=""><p class="text-center fs-2" style="letter-spacing:4px; line-height:1.5">Tabela de Equipamentos</p> </div>
+<div class=""></div>
+   <span class="text-center fs-5 fst-italic" style="margin-top:0px; line-height:1.5 ">Click no equipamento para mais detalhes.</span>
+</div>
+<div class="container border border-2" style="background-color: WhiteSmoke;">
+<!-- 1 ROW - Par2000T e Consoles -->
   <div class="row">
-    <div class="col-4">
-    <h2>Par2000T </h2> 
-    {% for obj in objectPar2000T %}
-    <button type="button" onclick="abrir_modal('{% url 'mudar_par2000t' obj.pk %}')" 
-    class="btn 
-    {% if obj.situacao.situacao_id == 1 %}
-    btn-success
-    {% elif obj.situacao.situacao_id == 2 %}
-    btn-warning
-    {% elif obj.situacao.situacao_id == 3 %}
-    btn-danger
-    {% elif obj.situacao.situacao_id == 4 %}
-    btn-secondary
-    {% else %}
-    btn-default
-    {% endif %} btn-circle btn-xl">{{ obj.nome }}</button>      
-    {% endfor %}
- 
-    </div>
-    <div class="col">
-    <h2>Consoles</h2> 
-    {% for obj in objectConsoles %}
-    <button type="button" onclick="abrir_modal('{% url 'mudar_consoles' obj.pk %}')" 
-    class="btn 
-    {% if obj.situacao.situacao_id == 1 %}
-    btn-success
-    {% elif obj.situacao.situacao_id == 2 %}
-    btn-warning
-    {% elif obj.situacao.situacao_id == 3 %}
-    btn-danger
-    {% elif obj.situacao.situacao_id == 4 %}
-    btn-secondary
-    {% else %}
-    btn-default
-    {% endif %} btn-circle btn-xl">{{ obj.nome }}</button>
-    {% endfor %}
-    </div>
-  </div>
-  <br>
-  <div class="row">
-    <div class="col-5">
-    <h2>Radios</h2> 
-    {% for obj in objectRadios %}
-    <button type="button" onclick="abrir_modal('{% url 'mudar_radios' obj.pk %}')" 
-    class="btn 
-    {% if obj.situacao.situacao_id == 1 %}
-    btn-success
-    {% elif obj.situacao.situacao_id == 2 %}
-    btn-warning
-    {% elif obj.situacao.situacao_id == 3 %}
-    btn-danger
-    {% elif obj.situacao.situacao_id == 4 %}
-    btn-secondary
-    {% else %}
-    btn-default
-    {% endif %} btn-circle btn-xl">{{ obj.nome }}</button>      
-    {% endfor %}
+      
+      <div class="col-4 border border-2">
+        <div class="row" ><h2>Par2000T</h2></div>
+          <div class="d-flex justify-content-center" style="padding-bottom:10px">
 
-    </div>
-    <div class="col">
-    <h2>Central Audio</h2> 
-      {% for obj in objectCentralAudio %}
-          <button type="button" onclick="abrir_modal('{% url 'mudar_centralaudio' obj.pk %}')" 
-            class="btn 
-            {% if obj.situacao.situacao_id == 1 %}
-            btn-success
-            {% elif obj.situacao.situacao_id == 2 %}
-            btn-warning
-            {% elif obj.situacao.situacao_id == 3 %}
-            btn-danger
-            {% elif obj.situacao.situacao_id == 4 %}
-            btn-secondary
-            {% else %}
-            btn-default
-            {% endif %} btn-circle btn-xl">{{ obj.nome }}</button>
-      {% endfor %}
-    </div>
+           {% for obj in objectPar2000T %}
+            <button class="{{ obj.situacao.get_class_bootstrap }} btn-circle btn-xl grow" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRightA1{{obj.pk}}" aria-controls="offcanvasRight">{{ obj.nome }}</button>&nbsp&nbsp
+              <div class="offcanvas offcanvas-end offc" tabindex="-1" id="offcanvasRightA1{{obj.pk}}" aria-labelledby="offcanvasRightA1{{obj.pk}}">
+                    <div class="offcanvas-header">
+                        <h5 id="offcanvasRightA1{{obj.pk}}">Detalhes - Equipamento {{ obj.nome }}</h5>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
+                    </div>
+                    <div class="offcanvas-body">
 
-    <div class="col">
-    <h2>EMS</h2> 
-      {% for obj in objectEms%}
-          <button type="button" onclick="abrir_modal('{% url 'mudar_ems' obj.pk %}')" 
-            class="btn 
-            {% if obj.situacao.situacao_id == 1 %}
-            btn-success
-            {% elif obj.situacao.situacao_id == 2 %}
-            btn-warning
-            {% elif obj.situacao.situacao_id == 3 %}
-            btn-danger
-            {% elif obj.situacao.situacao_id == 4 %}
-            btn-secondary
-            {% else %}
-            btn-default
-            {% endif %} btn-circle btn-xl">{{ obj.nome }}</button>
-      {% endfor %}
+                      Nome do Equipamento: {{obj.nome}} <br> 
+                      <hr>
+
+                      Situação:<br>
+                      <button type="button" class="{{ obj.situacao.get_class_bootstrap }}" disabled>{{obj.situacao.label}}</button>
+                      <br>
+                      Alterado em: {{ obj.ultimo_registro|date:'d-M-Y H:i:s' }} <br>
+                      ({{ obj.ultimo_registro| naturaltime }})
+                      <hr>
+          
+                      Descrição:<br>
+                      <textarea style="" cols="35" rows="5" readonly>{{obj.descricao}}</textarea> 
+
+                      <br> <br>
+                      <button type="button" onclick="abrir_modal('{% url 'mudar_par2000t' obj.pk %}')" class="btn btn-danger">Alterar</button>
+
+                    </div>
+              </div>
+          {% endfor %}
+        </div>
+    </div> 
+  
+  <div class="col-8 border border-2">
+        <div class="row" ><h2>Consoles</h2></div>
+          <div class="d-flex justify-content-center" style="padding-bottom:10px">
+           {% for obj in objectConsoles %}
+            <button class="{{ obj.situacao.get_class_bootstrap }} btn-circle btn-xl grow" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRightB2{{obj.pk}}" aria-controls="offcanvasRight">{{ obj.nome }}</button>&nbsp&nbsp
+              <div class="offcanvas offcanvas-end offc" tabindex="-1" id="offcanvasRightB2{{obj.pk}}" aria-labelledby="offcanvasRightB2{{obj.pk}}">
+                    <div class="offcanvas-header">
+                        <h5 id="offcanvasRightB2{{obj.pk}}">Detalhes - Equipamento {{ obj.nome }}</h5>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                    
+                      Nome do Equipamento: {{obj.nome}} <br> 
+                      <hr>
+
+                      Situação:<br>
+                      <button type="button" class="{{ obj.situacao.get_class_bootstrap }}" disabled>{{obj.situacao.label}}</button>
+                      <br>
+                      Alterado em: {{ obj.ultimo_registro|date:'d-M-Y H:i:s' }} <br>
+                      ({{ obj.ultimo_registro| naturaltime }})
+                      <hr>
+          
+                      Descrição:<br>
+                      <textarea style="" cols="35" rows="5" readonly>{{obj.descricao}}</textarea> 
+
+                      <br> <br>
+                      <button type="button" onclick="abrir_modal('{% url 'mudar_consoles' obj.pk %}')" class="btn btn-danger">Alterar</button>
+                    </div>
+              </div>
+          {% endfor %}
+      </div>
     </div>
-  </div>
-  <br>
-    <div class="row">
-    <div class="col">
-    <h2>Telefonia</h2> 
-    {% for obj in objectTelefonia %}
-    <button type="button" onclick="abrir_modal('{% url 'mudar_telefonia' obj.pk %}')" 
-    class="btn 
-    {% if obj.situacao.situacao_id == 1 %}
-    btn-success
-    {% elif obj.situacao.situacao_id == 2 %}
-    btn-warning
-    {% elif obj.situacao.situacao_id == 3 %}
-    btn-danger
-    {% elif obj.situacao.situacao_id == 4 %}
-    btn-secondary
-    {% else %}
-    btn-default
-    {% endif %} btn-circle btn-xl">{{ obj.nome }}</button>      
-    {% endfor %}
- 
-    </div>
-    <div class="col">
-    <h2>Diversos</h2> 
-    {% for obj in objectDiversos %}
-    <button type="button" onclick="abrir_modal('{% url 'mudar_diversos' obj.pk %}')" 
-    class="btn 
-    {% if obj.situacao.situacao_id == 1 %}
-    btn-success
-    {% elif obj.situacao.situacao_id == 2 %}
-    btn-warning
-    {% elif obj.situacao.situacao_id == 3 %}
-    btn-danger
-    {% elif obj.situacao.situacao_id == 4 %}
-    btn-secondary
-    {% else %}
-    btn-default
-    {% endif %} btn-circle btn-xl">{{ obj.nome }}</button>
-    {% endfor %}
-    </div>
+</div>
+<!-- 2 ROW - Radios e CentralAudio e Ems -->  
+<div class="row">
+  
+  <div class="col-5 border border-2">
+    <div class="row" ><h2>Radios</h2></div>
+          <div class="d-flex justify-content-center" style="padding-bottom:10px">
+           {% for obj in objectRadios %}
+            <button class="{{ obj.situacao.get_class_bootstrap }} btn-circle btn-xl grow" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRightC3{{obj.pk}}" aria-controls="offcanvasRight">{{ obj.nome }}</button>&nbsp&nbsp
+              <div class="offcanvas offcanvas-end offc" tabindex="-1" id="offcanvasRightC3{{obj.pk}}" aria-labelledby="offcanvasRightC3{{obj.pk}}">
+                    <div class="offcanvas-header">
+                        <h5 id="offcanvasRightC3{{obj.pk}}">Detalhes - Equipamento {{ obj.nome }}</h5>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                    
+                      Nome do Equipamento: {{obj.nome}} <br> 
+                      <hr>
+
+                      Situação:<br>
+                      <button type="button" class="{{ obj.situacao.get_class_bootstrap }}" disabled>{{obj.situacao.label}}</button>
+                      <br>
+                      Alterado em: {{ obj.ultimo_registro|date:'d-M-Y H:i:s' }} <br>
+                      ({{ obj.ultimo_registro| naturaltime }})
+                      <hr>
+          
+                      Descrição:<br>
+                      <textarea style="" cols="35" rows="5" readonly>{{obj.descricao}}</textarea> 
+
+                      <br> <br>
+                      <button type="button" onclick="abrir_modal('{% url 'mudar_radios' obj.pk %}')" class="btn btn-danger">Alterar</button>
+                    </div>
+              </div>
+          {% endfor %}
+        </div>
   </div>
 
+  <div class="col-4 border border-2">
+    <div class="row" ><h2>Central Audio</h2></div>
+          <div class="d-flex justify-content-center" style="padding-bottom:10px">
+           {% for obj in objectCentralAudio %}
+            <button class="{{ obj.situacao.get_class_bootstrap }} btn-circle btn-xl grow" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRightD4{{obj.pk}}" aria-controls="offcanvasRight">{{ obj.nome }}</button>&nbsp&nbsp
+              <div class="offcanvas offcanvas-end offc" tabindex="-1" id="offcanvasRightD4{{obj.pk}}" aria-labelledby="offcanvasRightD4{{obj.pk}}">
+                    <div class="offcanvas-header">
+                        <h5 id="offcanvasRightD4{{obj.pk}}">Detalhes - Equipamento {{ obj.nome }}</h5>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                    
+                      Nome do Equipamento: {{obj.nome}} <br> 
+                      <hr>
+
+                      Situação:<br>
+                      <button type="button" class="{{ obj.situacao.get_class_bootstrap }}" disabled>{{obj.situacao.label}}</button>
+                      <br>
+                      Alterado em: {{ obj.ultimo_registro|date:'d-M-Y H:i:s' }} <br>
+                      ({{ obj.ultimo_registro| naturaltime }})
+                      <hr>
+          
+                      Descrição:<br>
+                      <textarea style="" cols="35" rows="5" readonly>{{obj.descricao}}</textarea> 
+
+                      <br> <br>
+                      <button type="button" onclick="abrir_modal('{% url 'mudar_centralaudio' obj.pk %}')" class="btn btn-danger">Alterar</button>
+                    </div>
+              </div>
+          {% endfor %}
+        </div>
+  </div>
+
+  <div class="col-3 border border-2">
+   <div class="row" ><h2>EMS</h2></div>
+          <div class="d-flex justify-content-center" style="padding-bottom:10px">
+           {% for obj in objectEms %}
+            <button class="{{ obj.situacao.get_class_bootstrap }} btn-circle btn-xl grow" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRightE5{{obj.pk}}" aria-controls="offcanvasRight">{{ obj.nome }}</button>&nbsp&nbsp
+              <div class="offcanvas offcanvas-end offc" tabindex="-1" id="offcanvasRightE5{{obj.pk}}" aria-labelledby="offcanvasRightE5{{obj.pk}}">
+                    <div class="offcanvas-header">
+                        <h5 id="offcanvasRightE5{{obj.pk}}">Detalhes - Equipamento {{ obj.nome }}</h5>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                    
+                      Nome do Equipamento: {{obj.nome}} <br> 
+                      <hr>
+
+                      Situação:<br>
+                      <button type="button" class="{{ obj.situacao.get_class_bootstrap }}" disabled>{{obj.situacao.label}}</button>
+                      <br>
+                      Alterado em: {{ obj.ultimo_registro|date:'d-M-Y H:i:s' }} <br>
+                      ({{ obj.ultimo_registro| naturaltime }})
+                      <hr>
+          
+                      Descrição:<br>
+                      <textarea style="" cols="35" rows="5" readonly>{{obj.descricao}}</textarea> 
+
+                      <br> <br>
+                      <button type="button" onclick="abrir_modal('{% url 'mudar_ems' obj.pk %}')" class="btn btn-danger">Alterar</button>
+                    </div>
+              </div>
+          {% endfor %}
+      </div>
+    </div>
 </div>
-<div class="col-2" style="border=2px"> Teste
+<!-- 3 ROW - Telefonia e Diversos --> 
+<div class="row">
+    <div class="col-8 border border-2">
+    <div class="row" ><h2>Telefonia</h2></div>
+          <div class="d-flex justify-content-center" style="padding-bottom:10px">
+           {% for obj in objectTelefonia %}
+            <button class="{{ obj.situacao.get_class_bootstrap }} btn-circle btn-xl grow" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRightF6{{obj.pk}}" aria-controls="offcanvasRight">{{ obj.nome }}</button>&nbsp&nbsp
+              <div class="offcanvas offcanvas-end offc" tabindex="-1" id="offcanvasRightF6{{obj.pk}}" aria-labelledby="offcanvasRightF6{{obj.pk}}">
+                    <div class="offcanvas-header">
+                        <h5 id="offcanvasRightF6{{obj.pk}}">Detalhes - Equipamento {{ obj.nome }}</h5>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                    
+                      Nome do Equipamento: {{obj.nome}} <br> 
+                      <hr>
 
+                      Situação:<br>
+                      <button type="button" class="{{ obj.situacao.get_class_bootstrap }}" disabled>{{obj.situacao.label}}</button>
+                      <br>
+                      Alterado em: {{ obj.ultimo_registro|date:'d-M-Y H:i:s' }} <br>
+                      ({{ obj.ultimo_registro| naturaltime }})
+                      <hr>
+          
+                      Descrição:<br>
+                      <textarea style="" cols="35" rows="5" readonly>{{obj.descricao}}</textarea>  
+
+                      <br> <br>
+                      <button type="button" onclick="abrir_modal('{% url 'mudar_telefonia' obj.pk %}')" class="btn btn-danger">Alterar</button>
+                    </div>
+              </div>
+          {% endfor %}
+      </div>
+  </div>
+    
+  <div class="col-4 border border-2">
+    <div class="row" ><h2>Diversos</h2></div>
+          <div class="d-flex justify-content-center" style="padding-bottom:10px">
+           {% for obj in objectDiversos %}
+            <button class="{{ obj.situacao.get_class_bootstrap }} btn-circle btn-xl grow" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRightG7{{obj.pk}}" aria-controls="offcanvasRight">{{ obj.nome }}</button>&nbsp&nbsp
+              <div class="offcanvas offcanvas-end offc" tabindex="-1" id="offcanvasRightG7{{obj.pk}}" aria-labelledby="offcanvasRightG7{{obj.pk}}">
+                    <div class="offcanvas-header">
+                        <h5 id="offcanvasRightG7{{obj.pk}}">Detalhes - Equipamento {{ obj.nome }}</h5>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                    
+                      Nome do Equipamento: {{obj.nome}} <br> 
+                      <hr>
+
+                      Situação:<br>
+                      <button type="button" class="{{ obj.situacao.get_class_bootstrap }}" disabled>{{obj.situacao.label}}</button>
+                      <br>
+                      Alterado em: {{ obj.ultimo_registro|date:'d-M-Y H:i:s' }} <br>
+                      ({{ obj.ultimo_registro| naturaltime }})
+                      <hr>
+          
+                      Descrição:<br>
+                      <textarea style="" cols="35" rows="5" readonly>{{obj.descricao}}</textarea> 
+
+                      <br> <br>
+                      <button type="button" onclick="abrir_modal('{% url 'mudar_diversos' obj.pk %}')" class="btn btn-danger">Alterar</button>
+                    </div>
+              </div>
+          {% endfor %}
+      </div>
+  </div>
 </div>
-
 </div>
-
-
-
 
 <div class="modal fade" id="editar" role="dialog"></div>
 {% endblock %}
@@ -175,12 +284,27 @@
 
 {% block script_modal %}
 <script type="text/javascript">
+
   var $ = jQuery.noConflict();
+
   function abrir_modal(url){
     $('#editar').load(url, function(){
       $(this).modal('show');
     });
-  }
+  };
+    //ativar os popover em qualquer lugar da página
+    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+    return new bootstrap.Popover(popoverTriggerEl)
+    });
+
+    // popovers fecharam no proximo click
+    var popover = new bootstrap.Popover(document.querySelector('.popover-dismiss'), {
+    trigger: 'focus'
+    });
+
+
+
 </script>
 {% endblock %}
 

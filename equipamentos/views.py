@@ -38,6 +38,7 @@ class Par2000TUpdate(UpdateView):
         return context
 
 
+
 class ConsolesUpdate(UpdateView):
     model = Consoles
     template_name = 'editar.html'
@@ -110,10 +111,4 @@ class TelefoniaUpdate(UpdateView):
         context['url_cont'] = 'mudar_telefonia'
         return context
 
-
-
-
-
-
-
-
+    
